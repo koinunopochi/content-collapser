@@ -1,0 +1,45 @@
+/* クリック可能な見出し(H2-H6)の基本スタイル */
+h2[role="button"],
+h3[role="button"],
+h4[role="button"], /* ← H4追加 */
+h5[role="button"], /* ← H5追加 */
+h6[role="button"] { /* ← H6追加 */
+  cursor: pointer;
+  position: relative; /* ::before を絶対配置するために必要 */
+  padding-left: 1.5em; /* +/- 記号のためのスペース (少し広げました) */
+  /* ユーザーがテキスト選択しようとしたときに記号が邪魔にならないように */
+  user-select: none; /* 標準 */
+  -webkit-user-select: none; /* Safari, Chrome */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE */
+}
+
+/* ::before 疑似要素の共通スタイル (H2-H6) */
+h2[role="button"]::before,
+h3[role="button"]::before,
+h4[role="button"]::before, /* ← H4追加 */
+h5[role="button"]::before, /* ← H5追加 */
+h6[role="button"]::before { /* ← H6追加 */
+  position: absolute; /* 絶対配置 */
+  left: 0;            /* 左端に配置 */
+  width: 1.2em;       /* 幅を指定 */
+  text-align: center; /* 中央揃え */
+  font-weight: bold;  /* 太字 */
+  /* 記号自体の選択も防ぐ */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* 開いている状態 (aria-expanded="true") のスタイル */
+/* H2-H6を対象にするためにセレクタを共通化 */
+[role="button"][aria-expanded="true"]::before {
+  content: "- "; /* マイナス記号 */
+}
+
+/* 閉じている状態 (aria-expanded="false") のスタイル */
+/* H2-H6を対象にするためにセレクタを共通化 */
+[role="button"][aria-expanded="false"]::before {
+  content: "+ "; /* プラス記号 */
+}

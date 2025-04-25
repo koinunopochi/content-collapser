@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "見出し折りたたみ君",
+    "version": "1.0",
+    "description": "H2やH3見出しをクリックして、次の見出しまでのコンテンツを折りたたみます。",
+    "icons": {
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.docbase.io/posts/*"],
+        "js": ["content.js"],
+        "css": ["styles.css"],
+        "run_at": "document_idle" 
+      }
+    ]
+  }
